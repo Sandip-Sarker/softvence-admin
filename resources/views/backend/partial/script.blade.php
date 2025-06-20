@@ -1,9 +1,9 @@
-<script src="{{asset('backend/assets/js/jquery-3.7.0.min.js')}}"></script>
-<script src="{{asset('backend/assets/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('backend/assets/js/toastify-js.js')}}"></script>
-<script src="{{asset('backend/assets/js/axios.min.js')}}"></script>
-<script src="{{asset('backend/assets/js/config.js')}}"></script>
-<script src="{{asset('backend/assets/js/bootstrap.bundle.js')}}"></script>
+<script src="{{asset('js/jquery-3.7.0.min.js')}}"></script>
+<script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/toastify-js.js')}}"></script>
+<script src="{{asset('js/axios.min.js')}}"></script>
+<script src="{{asset('js/config.js')}}"></script>
+<script src="{{asset('js/bootstrap.bundle.js')}}"></script>
 
 <script>
     function MenuBarClickHandler() {
