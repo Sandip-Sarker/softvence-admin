@@ -26,7 +26,6 @@ class AppServiceProvider extends ServiceProvider
             ->group(base_path('routes/frontend.php'));
 
         Route::middleware('web')
-            ->prefix('auth')
             ->group(base_path('routes/auth.php'));
 
 
