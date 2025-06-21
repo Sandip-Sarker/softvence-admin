@@ -3,12 +3,35 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\RegisterRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use function response;
 
 class AuthController extends Controller
 {
+    public function registration(RegisterRequest $request)
+    {
+        $user = User::create([
+           'first_name' => $request->first_name,
+           'last_name' => $request->last_name,
+           'phone' => $request->phone,
+           'email' => $request->email,
+           'password' => Hash::make($request->password),
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User registered successfully',
+            'data' => [
+                'user' => $user,
+            ],
+        ], 200);
+    }
+
+
     public function login(Request $request)
     {
         $credential = $request->only('email', 'password');
