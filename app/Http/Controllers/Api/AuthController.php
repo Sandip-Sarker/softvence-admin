@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use function response;
+
+class AuthController extends Controller
+{
+    public function login(Request $request)
+    {
+        $credential = $request->only('email', 'password');
+
+        $token = Auth::guard('api')->attempt($credential);
+
+        if (!$token)
+        {
+            return response()->json([
+               'status' => false,
+               'message'=>'Unauthorized',
+                'data' => null
+            ], 401);
+        }
+
+        $data = [
+          'token' => $token,
+          'token_type' => 'bearer',
+            'user' => \auth('api')->user()
+        ];
+
+        return response()->json([
+            'stats' => true,
+            'message' => 'User Login Successfully',
+            'data' => $data
+        ], 200);
+    }
+
+
+    public function logout()
+    {
+        $user = \auth()->guard('api')->logout();
+
+        return response()->json([
+            'status' => true,
+            'message'=> 'Logout Successfully',
+        ], 200);
+    }
+
+}

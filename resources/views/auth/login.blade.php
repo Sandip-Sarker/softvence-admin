@@ -27,5 +27,45 @@
         </div>
     </div>
 
+
+    <script>
+        async function SubmitLogin() {
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+
+            if (email.length === 0) {
+                errorToast("Email is required");
+            } else if (password.length === 0) {
+                errorToast("Password is required");
+            } else {
+                showLoader();
+
+                try {
+                    let res = await axios.post('/login', {
+                        email: email,
+                        password: password
+                    });
+
+                    hideLoader();
+
+                    if (res.status === 200 && res.data.status === 'success') {
+                        successToast(res.data.message);
+
+                        // OPTIONAL: Store token manually if you prefer
+                        // localStorage.setItem('token', res.data.token);
+
+                        setTimeout(function () {
+                            window.location.href = '/admin/dashboard';
+                        }, 2000);
+                    }
+                } catch (err) {
+                    hideLoader();
+                    errorToast("Unauthorized");
+                }
+            }
+        }
+    </script>
+
+
 @endsection
 

@@ -2,8 +2,8 @@
 <html lang="en" data-bs-theme="light">
 <head>
     @include('frontend.partial.meta')
-    @include('frontend.partial.style')
 
+    @include('frontend.partial.style')
 
 </head>
 
@@ -19,7 +19,9 @@
     @yield('content')
 </div>
 
-@include('frontend.partial.style')
+@include('frontend.partial.script')
+
+
 
 </body>
 </html>
